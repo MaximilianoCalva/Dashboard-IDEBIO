@@ -1,0 +1,243 @@
+<style>
+    .idebio-extras {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    .idebio-extras h2 {
+        font-size: 20px;
+        font-weight: 700;
+        color: #233878;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .extras-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        width: 100%;
+    }
+
+    .extra-card {
+        background: linear-gradient(135deg, #233878 0%, #2863A4 100%);
+        border-radius: 12px;
+        padding: 20px;
+        text-decoration: none;
+        color: #FFFFFF;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 12px rgba(35, 56, 120, 0.2);
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        text-align: left;
+        gap: 20px;
+    }
+
+    .extra-card:hover {
+        transform: translateX(5px);
+        box-shadow: 0 6px 16px rgba(35, 56, 120, 0.3);
+    }
+
+    .card-icon {
+        font-size: 40px;
+        flex-shrink: 0;
+    }
+
+    .card-content {
+        flex: 1;
+    }
+
+    .card-title {
+        font-size: 18px;
+        font-weight: 700;
+        margin-bottom: 5px;
+        color: #FFFFFF;
+    }
+
+    .card-description {
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.9);
+        margin: 0;
+        line-height: 1.5;
+    }
+
+
+    @media (max-width: 768px) {
+        .extra-card {
+            padding: 15px;
+            gap: 15px;
+        }
+
+        .card-icon {
+            font-size: 32px;
+        }
+
+        .card-title {
+            font-size: 16px;
+        }
+
+        .card-description {
+            font-size: 12px;
+        }
+    }
+
+    /* Modal Styles */
+    .evaluation-modal {
+        display: none;
+        position: fixed;
+        z-index: 9999;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        overflow: auto;
+    }
+
+    .evaluation-modal.active {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .modal-content {
+        background: #FFFFFF;
+        border-radius: 12px;
+        width: 90%;
+        max-width: 800px;
+        max-height: 90vh;
+        overflow-y: auto;
+        position: relative;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        animation: modalSlideIn 0.3s ease;
+    }
+
+    @keyframes modalSlideIn {
+        from {
+            opacity: 0;
+            transform: translateY(-50px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .modal-header {
+        background: linear-gradient(135deg, #233878 0%, #2863A4 100%);
+        color: #FFFFFF;
+        padding: 20px;
+        border-radius: 12px 12px 0 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .modal-header h3 {
+        margin: 0;
+        font-size: 20px;
+        font-weight: 700;
+    }
+
+    .modal-close {
+        background: rgba(255, 255, 255, 0.2);
+        border: none;
+        color: #FFFFFF;
+        font-size: 28px;
+        font-weight: 700;
+        cursor: pointer;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+        line-height: 1;
+    }
+
+    .modal-close:hover {
+        background: rgba(255, 255, 255, 0.3);
+        transform: rotate(90deg);
+    }
+
+    .modal-body {
+        padding: 30px;
+    }
+
+    @media (max-width: 768px) {
+        .modal-content {
+            width: 95%;
+            max-height: 95vh;
+        }
+
+        .modal-header {
+            padding: 15px;
+        }
+
+        .modal-header h3 {
+            font-size: 18px;
+        }
+
+        .modal-body {
+            padding: 20px;
+        }
+    }
+</style>
+
+<div class="idebio-extras">
+    <h2>📚 Recursos Adicionales IDEBIO</h2>
+
+    <div class="extras-grid">
+
+        <!-- Dudas Frecuentes -->
+        <a href="https://fernandosanchezinstituto.com.mx/extra-dudas-frecuentes-de-alumnos-de-biodesprogramacion/"
+            target="_blank" class="extra-card">
+            <div class="card-icon">❓</div>
+            <div class="card-content">
+                <h3 class="card-title">Dudas Frecuentes</h3>
+                <p class="card-description">Respuestas a preguntas comunes de alumnos</p>
+            </div>
+        </a>
+
+        <!-- Consultorio -->
+        <a href="https://fernandosanchezinstituto.com.mx/extras-consultorio/" target="_blank" class="extra-card">
+            <div class="card-icon">🏥</div>
+            <div class="card-content">
+                <h3 class="card-title">Consultorio</h3>
+                <p class="card-description">Acceso al consultorio virtual</p>
+            </div>
+        </a>
+
+        <!-- Biodiccionario -->
+        <a href="https://fernandosanchezinstituto.com.mx/Biodiccionario/" target="_blank" class="extra-card">
+            <div class="card-icon">📖</div>
+            <div class="card-content">
+                <h3 class="card-title">Biodiccionario</h3>
+                <p class="card-description">Diccionario de Biodesprogramación</p>
+            </div>
+        </a>
+
+        <!-- Bioteca -->
+        <a href="https://fernandosanchezinstituto.com.mx/bioteca" target="_blank" class="extra-card">
+            <div class="card-icon">📚</div>
+            <div class="card-content">
+                <h3 class="card-title">Bioteca</h3>
+                <p class="card-description">Biblioteca de recursos y materiales</p>
+            </div>
+        </a>
+
+        <!-- Videoteca -->
+        <a href="https://fernandosanchezinstituto.com.mx/videoteca/" target="_blank" class="extra-card">
+            <div class="card-icon">🎥</div>
+            <div class="card-content">
+                <h3 class="card-title">Videoteca</h3>
+                <p class="card-description">Biblioteca de videos educativos</p>
+            </div>
+        </a>
+    </div>
+</div>
