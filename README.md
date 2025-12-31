@@ -1,203 +1,137 @@
-# Dashboard Sección Inicio - IDEBIO
+# IDEBIO - Instituto de Biodesprogramación Fernando Sánchez
 
-## 📋 Descripción
+## Información Institucional
 
-Colección de componentes HTML para la sección de inicio del dashboard de **IDEBIO (Instituto de Educación en Biología)**. Estos componentes están diseñados para ser integrados en WordPress usando widgets HTML personalizados.
+**Nombre Completo:** Instituto de Biodesprogramación Fernando Sánchez  
+**Acrónimo:** IDEBIO  
+**Sitio Web:** https://fernandosanchezinstituto.com.mx
 
-## 🎨 Colores Institucionales
+## SEO y Metadata
 
-IDEBIO utiliza un esquema de colores azul que representa profesionalismo, confianza y ciencia:
+### Dashboard (Panel de Estudiantes)
+**Título del Sitio:** IDEBIO - Mi Dashboard | Plataforma de Aprendizaje  
+**Descripción Corta:** Accede a tu plataforma de aprendizaje de Biodesprogramación. Consulta tus cursos, diplomados, certificados y avanza en tu formación profesional con IDEBIO.
 
-### Paleta Principal
-- **Azul Oscuro**: `#233878` - Color primario institucional
-- **Azul Medio**: `#2863A4` - Color secundario institucional
-- **Azul Claro**: `#3A7BC8` - Estados hover e interactivos
+## Colores Institucionales
 
-### Degradado Institucional
-```css
-background: linear-gradient(135deg, #233878 0%, #2863A4 100%);
-```
+### Paleta de Colores
+- **Azul Primario Oscuro:** `#233878`
+- **Azul Primario Medio:** `#2863A4`
+- **Azul Primario Claro:** `#3A7BC8`
+- **Gradiente Principal:** `linear-gradient(135deg, #233878 0%, #2863A4 100%)`
 
-### Variables CSS
-```css
-:root {
-  --idebio-primary-dark: #233878;
-  --idebio-primary-medium: #2863A4;
-  --idebio-primary-light: #3A7BC8;
-  --idebio-gradient: linear-gradient(135deg, #233878 0%, #2863A4 100%);
-}
-```
+### Colores de Sistema
+- **Blanco:** `#FFFFFF`
+- **Gris Claro:** `#F5F5F5`
+- **Éxito (Verde):** `#10b981`
+- **Advertencia (Amarillo):** `#f59e0b`
+- **Peligro (Rojo):** `#ef4444`
 
-## 📁 Estructura de Archivos
+## Contacto
 
-```
-Dashboard-seccion-inicio-IDEBIO/
-├── 01-dashboard-inicio-IDEBIO.html          # Cápsula de navegación "Dashboard > Inicio"
-├── 02-bienvenida-IDEBIO.html                # Mensaje de bienvenida personalizado
-├── 03-reglamento-IDEBIO.html                # Visor de reglamento institucional
-├── 04-plataforma-inactiva-IDEBIO.html       # Aviso de cuenta inactiva
-├── 05-informacion-chatbot-IDEBIO.html       # Información sobre recursos del chatbot
-├── 06-oferta-activa-IDEBIO.html             # Widget de oferta educativa activa
-├── 07-accesos-rapidos-IDEBIO.html           # Enlaces de acceso rápido
-├── Logo-idebio.png                          # Logo institucional
-├── colores-institucionales-IDEBIO.md        # Guía de colores institucionales
-└── README.md                                # Este archivo
-```
+**WhatsApp Soporte:** +52 1 33 3405 4655  
+**URL WhatsApp:** https://wa.me/5213334054655  
+**Canal WhatsApp:** https://whatsapp.com/channel/0029Vb6g37Z3bbV3WXetDx2J
 
-## 🚀 Componentes
+## Redes Sociales
 
-### 1. Dashboard Inicio (01)
-Cápsula compacta de navegación que muestra "Plataforma IDEBIO | DASHBOARD > Inicio" con animación de flecha.
+**Imagen de Cuentas Oficiales:** https://fernandosanchezinstituto.com.mx/wp-content/uploads/2023/08/Cuentas-reales-Post-03.jpg
 
-**Características:**
-- Diseño tipo píldora con bordes redondeados
-- Degradado azul institucional
-- Animación sutil de rebote
-- Responsive para móviles
+## URLs del Panel
 
-### 2. Bienvenida (02)
-Mensaje de bienvenida personalizado para estudiantes.
+- **Mi Cuenta:** https://fernandosanchezinstituto.com.mx/mi-cuenta/
+- **Iniciar Sesión:** https://fernandosanchezinstituto.com.mx/iniciar-sesion/
+- **Panel Access:** https://fernandosanchezinstituto.com.mx/panel-access/
+- **Logout:** https://fernandosanchezinstituto.com.mx/panel-access/?action=logout&redirect_to=https%3A%2Ffernandosanchezinstituto.com.mx
 
-### 3. Reglamento (03)
-Visor de reglamento institucional con navegación por páginas.
+## Recursos Visuales
 
-**Características:**
-- Navegación entre páginas del reglamento
-- Botones con colores institucionales azules
-- Diseño limpio y profesional
+### Logo
+**URL:** https://fernandosanchezinstituto.com.mx/wp-content/uploads/2021/06/Recurso-3-scaled.png
 
-### 4. Plataforma Inactiva (04)
-Aviso informativo sobre posibles razones de cuenta inactiva.
+### Dimensiones del Logo
+- **Desktop:** 30px altura
+- **Mobile:** 25px altura
+- **Max Width:** 150px
 
-**Características:**
-- Diseño de tarjeta con fondo azul claro
-- Iconos informativos
-- Secciones para "Baja Temporal" y "Adeudo en Mensualidad"
-- Footer con degradado azul institucional
+## Componentes del Dashboard
 
-### 5. Información Chatbot (05)
-Información sobre los recursos disponibles del chatbot IA.
+### Headers
+- `Header/header-logged-in-IDEBIO.html` - Header para usuarios autenticados
+- `Header/header-logged-out-IDEBIO.html` - Header para usuarios no autenticados
 
-**Características:**
-- Tarjetas con títulos en azul institucional
-- Botones con degradado azul
-- Diseño modular y escalable
+### Especificaciones del Header
+- **Padding:** 3px 10px
+- **Ancho:** 100% (full width)
+- **Altura Mínima:** 50px
+- **Font Size Brand:** 18px (desktop), 16px (mobile)
+- **Font Size Subtitle:** 9px (desktop), 8px (mobile)
 
-### 6. Oferta Activa (06)
-Widget para mostrar ofertas educativas activas.
+## Notas de Diseño
 
-**Características:**
-- Sistema de variables CSS con colores institucionales
-- Diseño adaptable
-- Estados hover optimizados
+- Los headers usan texto "IDEBIO" en lugar de logo
+- El texto del brand usa el gradiente institucional
+- Diseño responsive con breakpoints en 768px y 480px
+- Botones compactos con iconos de 14px
+- Sombras suaves con opacidad del color institucional
 
-### 7. Accesos Rápidos (07)
-Enlaces rápidos a recursos importantes de la plataforma.
+## Última Actualización
 
-**Características:**
-- Tarjetas con iconos coloridos
-- Botones con colores institucionales
-- Diseño responsive
+Fecha: 2025-12-30  
+Versión: 1.0
 
-## 💻 Uso en WordPress
+## Archivos de Acceso al Dashboard
 
-### Integración con Elementor
+### Carpeta: `Acceso a dashboard/`
 
-1. **Agregar Widget HTML**
-   - Arrastra un widget "HTML" a tu sección
-   - Copia el contenido completo del archivo `.html`
-   - Pega en el editor HTML del widget
+**Para usuarios autenticados (logged-in):**
+- `login-idebio-snippet.html` - Página de bienvenida con botón "Ir al Dashboard"
+  - Redirige a: `https://fernandosanchezinstituto.com.mx/mi-cuenta/`
 
-2. **Configuración Recomendada**
-   - Ancho: 100% del contenedor
-   - Padding: Ajustar según necesidad
-   - Margen: 10px superior e inferior
+**Para usuarios NO autenticados (logged-out):**
+- `logout-idebio-snippet.html` - Formulario de inicio de sesión
+  - Contiene shortcode: `[profilepress-login id="1"]`
+  - Incluye instrucciones para el usuario
 
-### Integración con Bloques de WordPress
+**Uso en WordPress:**
+- Copiar y pegar el contenido completo en un widget HTML de Elementor
+- Los snippets no afectan el diseño de la página existente
+- Usan clases CSS únicas para evitar conflictos
 
-1. **Bloque HTML Personalizado**
-   - Añade un bloque "HTML personalizado"
-   - Pega el código del componente
-   - Previsualiza y publica
+## Recursos Adicionales (Extras)
 
-## 🎯 Características Técnicas
+### Carpeta: `Extras/`
 
-### Responsive Design
-- Todos los componentes son responsive
-- Breakpoint móvil: `max-width: 600px`
-- Ajustes automáticos de tamaño y espaciado
+**Archivo principal:** `extras-grid-idebio.html`
 
-### Tipografía
-```css
-font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-```
+Grid de recursos adicionales con 6 secciones de acceso rápido:
 
-### Accesibilidad
-- Contraste de colores optimizado (WCAG 2.1)
-- Texto blanco sobre `#233878`: Ratio 9.2:1 ✅ (excelente)
-- Texto blanco sobre `#2863A4`: Ratio 5.8:1 ✅ (muy bueno)
-- Estructura semántica HTML5
+1. **⭐ Evaluación Docente**
+   - Permite a los estudiantes evaluar a sus docentes
+   - Integración con Elementor template ID: 141396
+   
+2. **❓ Dudas Frecuentes**
+   - URL: https://fernandosanchezinstituto.com.mx/extra-dudas-frecuentes-de-alumnos-de-biodesprogramacion/
+   - Respuestas a preguntas comunes de estudiantes
 
-## 🔧 Personalización
+3. **🏥 Consultorio**
+   - URL: https://fernandosanchezinstituto.com.mx/extras-consultorio/
+   - Acceso al consultorio virtual
 
-### Cambiar Colores
-Los colores están centralizados en variables CSS. Para personalizarlos:
+4. **📖 Biodiccionario**
+   - URL: https://fernandosanchezinstituto.com.mx/Biodiccionario/
+   - Diccionario especializado de Biodesprogramación
 
-```css
-:root {
-  --idebio-primary-dark: #TU_COLOR_OSCURO;
-  --idebio-primary-medium: #TU_COLOR_MEDIO;
-  --idebio-primary-light: #TU_COLOR_CLARO;
-}
-```
+5. **📚 Bioteca**
+   - URL: https://fernandosanchezinstituto.com.mx/bioteca
+   - Biblioteca de recursos y materiales educativos
 
-### Ajustar Tamaños
-Modifica las variables de tamaño en cada componente:
+6. **🎥 Videoteca**
+   - URL: https://fernandosanchezinstituto.com.mx/videoteca/
+   - Biblioteca de videos educativos
 
-```css
-.component {
-  font-size: 18px;  /* Ajustar según necesidad */
-  padding: 6px 22px; /* Ajustar espaciado */
-}
-```
-
-## 📱 Compatibilidad
-
-- ✅ Chrome/Edge (últimas versiones)
-- ✅ Firefox (últimas versiones)
-- ✅ Safari (últimas versiones)
-- ✅ Dispositivos móviles iOS/Android
-- ✅ WordPress 5.0+
-- ✅ Elementor 3.0+
-
-## 📝 Notas de Desarrollo
-
-### Versión
-- **Actual**: 1.0.0
-- **Última actualización**: 28 de diciembre de 2025
-- **Commit inicial**: ab0f61b
-
-### Cambios Recientes
-- ✅ Aplicación de colores institucionales oficiales (#233878, #2863A4)
-- ✅ Implementación de degradado azul institucional
-- ✅ Actualización de variables CSS
-- ✅ Mejora de accesibilidad y contraste (ratios 9.2:1 y 5.8:1)
-- ✅ Padding estandarizado a 10px en todos los componentes
-- ✅ Margins eliminados para mejor integración con WordPress
-- ✅ 7 componentes HTML completamente funcionales
-
-## 🤝 Contribución
-
-Para mantener la consistencia visual:
-1. Usa siempre los colores institucionales definidos
-2. Mantén la estructura de archivos
-3. Prueba en diferentes navegadores
-4. Verifica la accesibilidad
-
-## 📄 Licencia
-
-Uso interno de IDEBIO - Instituto de Educación en Biología
-
----
-
-**Desarrollado para IDEBIO** | Última actualización: Diciembre 2025
+### Diseño de Extras
+- **Colores**: Gradiente azul IDEBIO (#233878 a #2863A4)
+- **Layout**: Grid responsive (3 columnas desktop, 1 mobile)
+- **Interactividad**: Hover effects con elevación y sombra
+- **Iconos**: Emojis para identificación visual rápida
