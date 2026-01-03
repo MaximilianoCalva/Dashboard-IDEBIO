@@ -54,26 +54,97 @@
 - **Mobile:** 25px altura
 - **Max Width:** 150px
 
-## Componentes del Dashboard
+---
 
-### Headers
-- `Header/header-logged-in-IDEBIO.html` - Header para usuarios autenticados
-- `Header/header-logged-out-IDEBIO.html` - Header para usuarios no autenticados
+## 📋 Estructura de Sección Inicio
 
-### Especificaciones del Header
-- **Padding:** 3px 10px
-- **Ancho:** 100% (full width)
-- **Altura Mínima:** 50px
-- **Font Size Brand:** 18px (desktop), 16px (mobile)
-- **Font Size Subtitle:** 9px (desktop), 8px (mobile)
+La sección inicio del Dashboard IDEBIO está organizada en **13 componentes** que siguen un flujo lógico de navegación:
 
-## Notas de Diseño
+### 1️⃣ Header y Bienvenida
+- **01-dashboard-inicio-IDEBIO.html** - Cápsula de título "DASHBOARD" con indicador de inicio
+- **02-bienvenida-IDEBIO.html** - Mensaje de bienvenida personalizado
 
-- Los headers usan texto "IDEBIO" en lugar de logo
-- El texto del brand usa el gradiente institucional
-- Diseño responsive con breakpoints en 768px y 480px
-- Botones compactos con iconos de 14px
-- Sombras suaves con opacidad del color institucional
+### 2️⃣ Avisos para Administrativos y Docentes
+- **03-aviso-admin-docentes-IDEBIO.html** 👥 - Aviso de acceso para administrativos y docentes (con flecha)
+- **04-accesos-rapidos-IDEBIO.html** ⚡ - Accesos rápidos a herramientas principales
+
+### 3️⃣ Información Institucional
+- **05-aviso-solo-visualizacion-IDEBIO.html** 👁️ - Aviso de visualización con opción de requisición
+- **06-reglamento-IDEBIO.html** - Visualizador del reglamento institucional
+- **07-plataforma-inactiva-IDEBIO.html** - Aviso de plataforma inactiva
+
+### 4️⃣ Sección Administrativa
+- **08-aviso-solo-administrativos-IDEBIO.html** 🔒 - Aviso de acceso restringido a administrativos (con flecha)
+- **09-informacion-chatbot-IDEBIO.html** - Información del chatbot institucional
+- **10-oferta-activa-IDEBIO.html** - Tabla de diplomados, cursos y eventos activos
+- **11-requisiciones-IDEBIO.html** 📋 - Formularios de requisiciones (6 pasos)
+- **12-correos-activos-IDEBIO.html** 📧 - Lista de 60 cuentas de correo activas
+
+### 5️⃣ Sección Estudiantil
+- **13-aviso-dashboard-estudiantil-IDEBIO.html** 📚 - Aviso de visualización estudiantil (con flecha)
+
+---
+
+## 🎨 Componentes de Avisos
+
+### Avisos con Flecha Animada ⬇️
+1. **03-aviso-admin-docentes-IDEBIO.html** - Azul (#2863A4)
+2. **08-aviso-solo-administrativos-IDEBIO.html** - Rojo (#dc3545)
+3. **13-aviso-dashboard-estudiantil-IDEBIO.html** - Azul IDEBIO (#233878)
+
+### Avisos sin Flecha
+4. **05-aviso-solo-visualizacion-IDEBIO.html** - Amarillo (#ffc107)
+
+---
+
+## 📊 Componentes Principales
+
+### Tablas y Visualizadores
+- **10-oferta-activa-IDEBIO.html** - Tabla dinámica conectada a Google Sheets
+- **12-correos-activos-IDEBIO.html** - Tabla con 60 cuentas de correo y estadísticas
+
+### Formularios
+- **11-requisiciones-IDEBIO.html** - 6 tarjetas con enlaces a Google Forms:
+  1. Impulso Marketing (General)
+  2. Paso 1: Imágenes Publicitarias
+  3. Paso 2: Videos Publicitarios
+  4. Paso 3: Video de Marca
+  5. Paso 4: Links y Redes Sociales
+  6. Paso 5: Links de Pago
+
+---
+
+## 🎯 Flujo de Navegación
+
+```
+┌─────────────────────────────────────┐
+│  01 - Dashboard Inicio              │
+│  02 - Bienvenida                    │
+└─────────────────────────────────────┘
+              ↓
+┌─────────────────────────────────────┐
+│  SECCIÓN ADMIN/DOCENTES             │
+│  03 - Aviso Admin/Docentes 👥⬇️     │
+│  04 - Accesos Rápidos ⚡            │
+│  05 - Aviso Solo Visualización 👁️  │
+│  06 - Reglamento                    │
+│  07 - Plataforma Inactiva           │
+└─────────────────────────────────────┘
+              ↓
+┌─────────────────────────────────────┐
+│  SECCIÓN ADMINISTRATIVA             │
+│  08 - Aviso Solo Administrativos🔒⬇️│
+│  09 - Información Chatbot           │
+│  10 - Oferta Activa (Tabla)         │
+│  11 - Requisiciones (6 Formularios) │
+│  12 - Correos Activos (60 cuentas)  │
+└─────────────────────────────────────┘
+              ↓
+┌─────────────────────────────────────┐
+│  SECCIÓN ESTUDIANTIL                │
+│  13 - Aviso Dashboard Estudiantil📚⬇│
+└─────────────────────────────────────┘
+```
 
 ---
 
@@ -108,55 +179,18 @@ Todos los componentes HTML de este proyecto están diseñados para ser implement
    - Guardar cambios en Elementor
    - Publicar la página
 
-#### Componentes Disponibles:
-
-**Headers**:
-- `Header/header-logged-in-IDEBIO.html` - Header para usuarios autenticados
-- `Header/header-logged-out-IDEBIO.html` - Header para usuarios no autenticados
-
-**Sección Inicio**:
-- `Seccion inicio/01-dashboard-inicio-IDEBIO.html` - Cápsula de bienvenida
-- `Seccion inicio/02-bienvenida-IDEBIO.html` - Mensaje de bienvenida (si existe)
-- `Seccion inicio/03-reglamento-IDEBIO.html` - Reglamento institucional
-- `Seccion inicio/04-plataforma-inactiva-IDEBIO.html` - Mensaje de plataforma inactiva
-- `Seccion inicio/05-informacion-chatbot-IDEBIO.html` - Información del chatbot
-- `Seccion inicio/06-oferta-activa-IDEBIO.html` - Ofertas activas
-- `Seccion inicio/07-accesos-rapidos-IDEBIO.html` - Accesos rápidos
-
-**Extras**:
-- `Extras/extras-grid-idebio.html` - Grid de recursos adicionales
-
-**Footer**:
-- `Footer/footer-dashboard-idebio-snippet.html` - Footer del dashboard
-
-**Acceso**:
-- `Acceso a dashboard/login-idebio-snippet.html` - Página de login
-- `Acceso a dashboard/logout-idebio-snippet.html` - Página de logout
-
 ---
 
-## Última Actualización
+## 📝 Notas Importantes
 
-Fecha: 2026-01-01  
-Versión: 2.0
+- ✅ Todos los archivos usan los colores institucionales de IDEBIO
+- ✅ Diseño responsive para móviles y tablets
+- ✅ Avisos con flechas animadas para mejorar UX
+- ✅ Numeración secuencial del 01 al 13
+- ✅ Sufijo `-IDEBIO` en todos los archivos para identificación
+- ✅ Archivo consolidado disponible: `seccion-iniicio.html`
 
-## Archivos de Acceso al Dashboard
-
-### Carpeta: `Acceso a dashboard/`
-
-**Para usuarios autenticados (logged-in):**
-- `login-idebio-snippet.html` - Página de bienvenida con botón "Ir al Dashboard"
-  - Redirige a: `https://fernandosanchezinstituto.com.mx/mi-cuenta/`
-
-**Para usuarios NO autenticados (logged-out):**
-- `logout-idebio-snippet.html` - Formulario de inicio de sesión
-  - Contiene shortcode: `[profilepress-login id="1"]`
-  - Incluye instrucciones para el usuario
-
-**Uso en WordPress:**
-- Copiar y pegar el contenido completo en un widget HTML de Elementor
-- Los snippets no afectan el diseño de la página existente
-- Usan clases CSS únicas para evitar conflictos
+---
 
 ## Recursos Adicionales (Extras)
 
@@ -195,3 +229,10 @@ Grid de recursos adicionales con 6 secciones de acceso rápido:
 - **Layout**: Grid responsive (3 columnas desktop, 1 mobile)
 - **Interactividad**: Hover effects con elevación y sombra
 - **Iconos**: Emojis para identificación visual rápida
+
+---
+
+## Última Actualización
+
+**Fecha:** 2 de enero de 2026  
+**Versión:** 3.0
