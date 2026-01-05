@@ -29,7 +29,7 @@
 
 ## Contacto
 
-**WhatsApp Soporte:** +52 1 33 3405 4655  
+**WhatsApp Soporte:** +52 1 33 1429 0988  
 **URL WhatsApp:** https://wa.me/5213334054655  
 **Canal WhatsApp:** https://whatsapp.com/channel/0029Vb6g37Z3bbV3WXetDx2J
 
