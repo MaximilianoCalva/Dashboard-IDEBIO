@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Gracias! - IDEBIO</title>
+    <style>
+        /* Variables Globales Basadas en Header/Footer */
+        :root {
+            --idebio-primary-dark: #233878;
+            --idebio-primary-medium: #2863A4;
+            --idebio-primary-light: #3A7BC8;
+            --idebio-white: #FFFFFF;
+            --idebio-light-gray: #F5F5F5;
+            --idebio-gradient: linear-gradient(135deg, #233878 0%, #2863A4 100%);
+            --font-main: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: var(--font-main);
+            background-color: var(--idebio-light-gray);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* --- Header Styles (Adaptados) --- */
+        .idebio-header-logged-out {
+            width: 100%;
+            background: var(--idebio-white);
+            border-bottom: 1px solid #e8eeff;
+            box-shadow: 0 2px 8px rgba(35, 56, 120, 0.06);
+            padding: 8px 15px;
+            position: relative;
+            z-index: 1000;
+        }
+
+        .idebio-header-logged-out .header-container {
+            width: 100%;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            min-height: 60px;
+            max-width: 1200px;
+            /* Consistent max-width */
+        }
+
+        .idebio-header-logged-out .header-brand {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            text-decoration: none;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        .idebio-header-logged-out .brand-text {
+            font-size: 22px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            background: var(--idebio-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .idebio-header-logged-out .brand-subtitle {
+            font-size: 10px;
+            font-weight: 600;
+            color: #999;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* --- Main Content (Hero) --- */
+        .main-content {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+        }
+
+        .thank-you-card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(35, 56, 120, 0.1);
+            padding: 60px 40px;
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        .icon-container {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #E3F2FD 0%, #BBDEFB 100%);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto 30px;
+            position: relative;
+        }
+
+        .icon-container::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 2px solid #BBDEFB;
+            animation: pulse 2s infinite;
+        }
+
+        .icon-check {
+            width: 50px;
+            height: 50px;
+            stroke: var(--idebio-primary-medium);
+            stroke-width: 3;
+            fill: none;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            animation: drawCheck 0.6s 0.4s ease-out forwards;
+            stroke-dasharray: 100;
+            stroke-dashoffset: 100;
+        }
+
+        .title {
+            font-size: 32px;
+            color: var(--idebio-primary-dark);
+            margin-bottom: 15px;
+            font-weight: 800;
+        }
+
+        .message {
+            font-size: 16px;
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 40px;
+        }
+
+        .btn-home {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 35px;
+            background: var(--idebio-gradient);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(35, 56, 120, 0.2);
+        }
+
+        .btn-home:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(35, 56, 120, 0.3);
+            filter: brightness(1.1);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+
+            100% {
+                transform: scale(1.2);
+                opacity: 0;
+            }
+        }
+
+        @keyframes drawCheck {
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        /* --- Footer Styles (Adaptados) --- */
+        .idebio-footer {
+            background: linear-gradient(135deg, #233878 0%, #2863A4 100%);
+            color: #FFFFFF;
+            padding: 40px 15px 20px;
+        }
+
+        .idebio-footer .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .idebio-footer .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .idebio-footer h3 {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #FFFFFF;
+        }
+
+        .idebio-footer p,
+        .idebio-footer a:not(.social-link) {
+            font-size: 14px;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .idebio-footer a:not(.social-link):hover {
+            color: #FFFFFF;
+            text-decoration: underline;
+        }
+
+        .idebio-footer .social-links {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .idebio-footer .social-link {
+            padding: 8px 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            font-size: 12px;
+            color: #FFFFFF;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .idebio-footer .social-link:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-2px);
+        }
+
+        .idebio-footer .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            padding-top: 20px;
+            text-align: center;
+        }
+
+        .idebio-footer .footer-bottom p {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.8);
+            margin: 0;
+        }
+
+        /* Mobile adjustment */
+        @media (max-width: 768px) {
+            .thank-you-card {
+                padding: 40px 20px;
+            }
+
+            .title {
+                font-size: 26px;
+            }
+
+            .idebio-header-logged-out .brand-subtitle {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <div class="idebio-header-logged-out">
+        <div class="header-container">
+            <a href="https://fernandosanchezinstituto.com.mx/" class="header-brand">
+                <span class="brand-text">IDEBIO</span>
+                <span class="brand-subtitle">Instituto de Biodesprogramación Fernando Sánchez</span>
+            </a>
+            <!-- Simple access button if needed, or keeping it clean -->
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+        <div class="thank-you-card">
+            <div class="icon-container">
+                <svg class="icon-check" viewBox="0 0 24 24">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+            </div>
+            <h1 class="title">¡Gracias por registrarte!</h1>
+            <p class="message">
+                Hemos recibido tu información correctamente.<br>
+                Nos pondremos en contacto contigo lo antes posible para continuar con tu proceso.
+            </p>
+            <a href="https://fernandosanchezinstituto.com.mx/" class="btn-home">Volver al Inicio</a>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="idebio-footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <!-- Contacto -->
+                <div class="footer-section">
+                    <h3>Contacto</h3>
+                    <p>📞 +52 1 33 3405 4655</p>
+                    <a href="https://wa.me/5213334054655" target="_blank">💬 Comunicación WhatsApp</a>
+                    <a href="https://whatsapp.com/channel/0029Vb6g37Z3bbV3WXetDx2J" target="_blank">📢 Canal
+                        WhatsApp</a>
+                </div>
+
+                <!-- Redes Sociales -->
+                <div class="footer-section">
+                    <h3>Síguenos</h3>
+                    <div class="social-links">
+                        <a href="https://facebook.com/2041338122745512" target="_blank" class="social-link">📘
+                            Facebook</a>
+                        <a href="https://instagram.com/institutodebiodesprogramacion" target="_blank"
+                            class="social-link">📷 Instagram</a>
+                        <a href="https://www.tiktok.com/@instituto.idebio" target="_blank" class="social-link">🎵
+                            TikTok</a>
+                        <a href="https://www.youtube.com/channel/UCdwR1D4FuM1z1CLtzVtoO8Q" target="_blank"
+                            class="social-link">▶️ YouTube</a>
+                    </div>
+                </div>
+
+                <!-- Accesos Rápidos -->
+                <div class="footer-section">
+                    <h3>Accesos Rápidos</h3>
+                    <a href="https://fernandosanchezinstituto.com.mx/oferta-academica/" target="_blank">📚 Oferta
+                        Académica</a>
+                    <a href="https://fernandosanchezinstituto.com.mx/eventos/" target="_blank">📅 Eventos</a>
+                    <a href="https://fernandosanchezinstituto.com.mx/docentes/" target="_blank">👨‍🏫 Docentes</a>
+                    <a href="https://fernandosanchezinstituto.com.mx/contacto/" target="_blank">📞 Contacto</a>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 Instituto de Biodesprogramación Fernando Sánchez. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>
