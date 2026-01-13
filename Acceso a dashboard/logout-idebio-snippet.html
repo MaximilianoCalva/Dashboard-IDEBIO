@@ -57,6 +57,64 @@
             padding: 30px 20px;
         }
     }
+
+    .idebio-tabs {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+        border-bottom: 2px solid #e5e7eb;
+    }
+
+    .idebio-tab-btn {
+        background: none;
+        border: none;
+        padding: 10px 20px;
+        font-size: 16px;
+        font-weight: 600;
+        color: #6b7280;
+        cursor: pointer;
+        position: relative;
+        transition: all 0.3s ease;
+    }
+
+    .idebio-tab-btn.active {
+        color: #233878;
+    }
+
+    .idebio-tab-btn:hover {
+        color: #233878;
+    }
+
+    .idebio-tab-btn.active::after {
+        content: '';
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: #233878;
+    }
+
+    .idebio-tab-content {
+        display: none;
+        animation: fadeIn 0.3s ease;
+    }
+
+    .idebio-tab-content.active {
+        display: block;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(5px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
 </style>
 
 <div class="idebio-logout-form">
@@ -65,9 +123,46 @@
         <p>Instituto de Biodesprogramación Fernando Sánchez</p>
     </div>
     <div class="login-body">
-        <p class="login-instructions">
-            Ingresa tu correo y contraseña para acceder a tu dashboard
-        </p>
-        [profilepress-login id="1"]
+        <div class="idebio-tabs">
+            <button class="idebio-tab-btn active" onclick="switchIdebioTab('login', this)">Iniciar Sesión</button>
+            <button class="idebio-tab-btn" onclick="switchIdebioTab('register', this)">Registro</button>
+        </div>
+
+        <div id="idebio-tab-login" class="idebio-tab-content active">
+            <p style="text-align: center; color: #6b7280; margin-bottom: 20px; font-size: 15px;">
+                Ingresa tu correo y contraseña para acceder a tu dashboard.
+            </p>
+            [user_registration_login]
+        </div>
+
+        <div id="idebio-tab-register" class="idebio-tab-content">
+            <p style="text-align: center; color: #6b7280; margin-bottom: 20px; font-size: 15px;">
+                Regístrate para crear una nueva cuenta.
+            </p>
+            [user_registration_form id="14"]
+        </div>
     </div>
+</div>
+
+<script>
+    function switchIdebioTab(tabName, btn) {
+        // Find container by looking up the DOM tree to find the closest wrapper
+        // This makes the script work even if there are multiple instances on the page
+        var container = btn.closest('.idebio-logout-form');
+
+        // Use container to scoped query selectors
+        var contents = container.querySelectorAll('.idebio-tab-content');
+        var buttons = container.querySelectorAll('.idebio-tab-btn');
+
+        // Hide all contents
+        contents.forEach(function (el) { el.classList.remove('active'); });
+        // Deactivate all buttons
+        buttons.forEach(function (el) { el.classList.remove('active'); });
+
+        // Show selected content
+        container.querySelector('#idebio-tab-' + tabName).classList.add('active');
+        // Activate clicked button
+        btn.classList.add('active');
+    }
+</script>
 </div>

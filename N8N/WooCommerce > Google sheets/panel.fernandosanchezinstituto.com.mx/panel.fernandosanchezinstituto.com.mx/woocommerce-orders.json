@@ -1,0 +1,329 @@
+{
+    "nodes": [
+        {
+            "parameters": {
+                "path": "get-payments",
+                "responseMode": "responseNode",
+                "responseData": "allEntries",
+                "options": {
+                    "allowedOrigins": "*"
+                }
+            },
+            "type": "n8n-nodes-base.webhook",
+            "typeVersion": 1,
+            "position": [
+                -700,
+                0
+            ],
+            "id": "webhook-node",
+            "name": "Webhook"
+        },
+        {
+            "parameters": {
+                "resource": "order",
+                "operation": "getAll",
+                "limit": 10,
+                "options": {
+                    "status": "any"
+                }
+            },
+            "name": "WooCommerce",
+            "type": "n8n-nodes-base.wooCommerce",
+            "typeVersion": 1,
+            "position": [
+                -500,
+                0
+            ],
+            "id": "woocommerce-node",
+            "credentials": {
+                "wooCommerceApi": {
+                    "id": "zoRhDdtxMMtqFoaA",
+                    "name": "WooCommerce account"
+                }
+            }
+        },
+        {
+            "parameters": {
+                "keepOnlySet": true,
+                "values": {
+                    "string": [
+                        {
+                            "name": "id",
+                            "value": "={{ $json.id.toString() }}"
+                        },
+                        {
+                            "name": "status",
+                            "value": "={{ $json.status }}"
+                        },
+                        {
+                            "name": "total",
+                            "value": "={{ $json.total }}"
+                        },
+                        {
+                            "name": "currency",
+                            "value": "={{ $json.currency }}"
+                        },
+                        {
+                            "name": "date_created",
+                            "value": "={{ $json.date_created }}"
+                        },
+                        {
+                            "name": "payment_method_title",
+                            "value": "={{ $json.payment_method_title }}"
+                        },
+                        {
+                            "name": "email",
+                            "value": "={{ $json.billing.email }}"
+                        },
+                        {
+                            "name": "first_name",
+                            "value": "={{ $json.billing.first_name }}"
+                        },
+                        {
+                            "name": "last_name",
+                            "value": "={{ $json.billing.last_name }}"
+                        }
+                    ]
+                },
+                "options": {}
+            },
+            "name": "Simplify Data",
+            "type": "n8n-nodes-base.set",
+            "typeVersion": 1,
+            "position": [
+                -300,
+                0
+            ],
+            "id": "simplify-node"
+        },
+        {
+            "parameters": {
+                "options": {}
+            },
+            "name": "Respond to Webhook",
+            "type": "n8n-nodes-base.respondToWebhook",
+            "typeVersion": 1,
+            "position": [
+                -50,
+                -100
+            ],
+            "id": "respond-node"
+        },
+        {
+            "parameters": {
+                "operation": "read",
+                "sheetId": "YOUR_GOOGLE_SHEET_ID",
+                "range": "Sheet1!A:A",
+                "options": {}
+            },
+            "name": "Read Existing IDs",
+            "type": "n8n-nodes-base.googleSheets",
+            "typeVersion": 3,
+            "position": [
+                -50,
+                100
+            ],
+            "id": "read-sheets-node",
+            "credentials": {
+                "googleSheetsOAuth2Api": {
+                    "id": "YOUR_CREDENTIAL_ID",
+                    "name": "Google Sheets Account"
+                }
+            },
+            "alwaysOutputData": true
+        },
+        {
+            "parameters": {
+                "mode": "append"
+            },
+            "name": "Merge Both",
+            "type": "n8n-nodes-base.merge",
+            "typeVersion": 2,
+            "position": [
+                150,
+                50
+            ],
+            "id": "merge-node"
+        },
+        {
+            "parameters": {
+                "functionCode": "// Get the merged items\nconst items = $input.all();\n\n// Separate WooCommerce orders from existing IDs\nconst wooOrders = [];\nconst existingIds = [];\n\nfor (const item of items) {\n  const data = item.json;\n  \n  // If has all WooCommerce fields, it's an order\n  if (data.status && data.total && data.email) {\n    wooOrders.push(data);\n    continue;\n  }\n  \n  // If only has 'id', it's from Google Sheets\n  if (data.id !== undefined && data.id !== null) {\n    const idStr = String(data.id).trim();\n    // Skip header, empty values, whitespace-only, and non-numeric\n    if (idStr && idStr !== 'id' && idStr !== '' && /^\\d+$/.test(idStr)) {\n      existingIds.push(idStr);\n    }\n  }\n}\n\n// Filter out duplicates\nconst newOrders = wooOrders.filter(order => {\n  const orderId = order.id.toString();\n  const exists = existingIds.includes(orderId);\n  return !exists;\n});\n\n// Return new orders\nif (newOrders.length === 0) {\n  return [];\n}\n\nreturn newOrders.map(order => ({ json: order }));"
+            },
+            "name": "Filter Duplicates",
+            "type": "n8n-nodes-base.function",
+            "typeVersion": 1,
+            "position": [
+                350,
+                50
+            ],
+            "id": "filter-node"
+        },
+        {
+            "parameters": {
+                "keepOnlySet": true,
+                "values": {
+                    "string": [
+                        {
+                            "name": "id",
+                            "value": "={{ $json.id }}"
+                        },
+                        {
+                            "name": "status",
+                            "value": "={{ $json.status }}"
+                        },
+                        {
+                            "name": "total",
+                            "value": "={{ $json.total }}"
+                        },
+                        {
+                            "name": "currency",
+                            "value": "={{ $json.currency }}"
+                        },
+                        {
+                            "name": "date_created",
+                            "value": "={{ $json.date_created }}"
+                        },
+                        {
+                            "name": "payment_method_title",
+                            "value": "={{ $json.payment_method_title }}"
+                        },
+                        {
+                            "name": "email",
+                            "value": "={{ $json.email }}"
+                        },
+                        {
+                            "name": "first_name",
+                            "value": "={{ $json.first_name }}"
+                        },
+                        {
+                            "name": "last_name",
+                            "value": "={{ $json.last_name }}"
+                        }
+                    ]
+                },
+                "options": {}
+            },
+            "name": "Prepare Data",
+            "type": "n8n-nodes-base.set",
+            "typeVersion": 1,
+            "position": [
+                550,
+                50
+            ],
+            "id": "prepare-data-node"
+        },
+        {
+            "parameters": {
+                "operation": "append",
+                "sheetId": "YOUR_GOOGLE_SHEET_ID",
+                "range": "Sheet1",
+                "options": {
+                    "dataMode": "autoMapInputData"
+                }
+            },
+            "name": "Append New Rows",
+            "type": "n8n-nodes-base.googleSheets",
+            "typeVersion": 3,
+            "position": [
+                750,
+                50
+            ],
+            "id": "append-node",
+            "credentials": {
+                "googleSheetsOAuth2Api": {
+                    "id": "YOUR_CREDENTIAL_ID",
+                    "name": "Google Sheets Account"
+                }
+            }
+        }
+    ],
+    "connections": {
+        "Webhook": {
+            "main": [
+                [
+                    {
+                        "node": "WooCommerce",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "WooCommerce": {
+            "main": [
+                [
+                    {
+                        "node": "Simplify Data",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Simplify Data": {
+            "main": [
+                [
+                    {
+                        "node": "Respond to Webhook",
+                        "type": "main",
+                        "index": 0
+                    },
+                    {
+                        "node": "Read Existing IDs",
+                        "type": "main",
+                        "index": 0
+                    },
+                    {
+                        "node": "Merge Both",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Read Existing IDs": {
+            "main": [
+                [
+                    {
+                        "node": "Merge Both",
+                        "type": "main",
+                        "index": 1
+                    }
+                ]
+            ]
+        },
+        "Merge Both": {
+            "main": [
+                [
+                    {
+                        "node": "Filter Duplicates",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Filter Duplicates": {
+            "main": [
+                [
+                    {
+                        "node": "Prepare Data",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Prepare Data": {
+            "main": [
+                [
+                    {
+                        "node": "Append New Rows",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        }
+    }
+}

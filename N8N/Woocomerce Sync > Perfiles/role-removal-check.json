@@ -1,0 +1,285 @@
+{
+    "name": "Sync Roles with 60-Day Payment Rule",
+    "nodes": [
+        {
+            "parameters": {
+                "rule": {
+                    "interval": [
+                        {
+                            "field": "hours",
+                            "triggerAtHour": 0
+                        }
+                    ]
+                }
+            },
+            "type": "n8n-nodes-base.scheduleTrigger",
+            "typeVersion": 1,
+            "position": [
+                -400,
+                0
+            ],
+            "id": "schedule-trigger",
+            "name": "Daily Schedule"
+        },
+        {
+            "parameters": {
+                "operation": "read",
+                "sheetId": "YOUR_PAYMENTS_SHEET_ID",
+                "range": "Sheet1!A:Z",
+                "options": {}
+            },
+            "name": "Read Payments",
+            "type": "n8n-nodes-base.googleSheets",
+            "typeVersion": 3,
+            "position": [
+                -200,
+                -100
+            ],
+            "id": "read-payments",
+            "credentials": {
+                "googleSheetsOAuth2Api": {
+                    "id": "YOUR_GS_CREDENTIAL_ID",
+                    "name": "Google Sheets Account"
+                }
+            }
+        },
+        {
+            "parameters": {
+                "operation": "read",
+                "sheetId": "YOUR_ROLES_SHEET_ID",
+                "range": "Roles!A:B",
+                "options": {}
+            },
+            "name": "Read Master Roles",
+            "type": "n8n-nodes-base.googleSheets",
+            "typeVersion": 3,
+            "position": [
+                -200,
+                100
+            ],
+            "id": "read-roles",
+            "credentials": {
+                "googleSheetsOAuth2Api": {
+                    "id": "YOUR_GS_CREDENTIAL_ID",
+                    "name": "Google Sheets Account"
+                }
+            }
+        },
+        {
+            "parameters": {
+                "mode": "append"
+            },
+            "name": "Merge Inputs",
+            "type": "n8n-nodes-base.merge",
+            "typeVersion": 2,
+            "position": [
+                0,
+                0
+            ],
+            "id": "merge-inputs"
+        },
+        {
+            "parameters": {
+                "functionCode": "// Helper: Normalize email for comparison\nconst normalize = (email) => email ? email.toString().toLowerCase().trim() : '';\n\n// FETCH ALL DATA from previous nodes safely\nconst allPayments = $(\"Read Payments\").all().map(i => i.json);\nconst allRoles = $(\"Read Master Roles\").all().map(i => i.json);\n\n// Debug stats\nconst debugStats = {\n    totalPayments: allPayments.length,\n    totalRoles: allRoles.length,\n};\n\n// 1. Map Emails to Last Payment Date\nconst lastPaymentMap = {};\n\nfor (const payment of allPayments) {\n  if (!payment) continue;\n  const email = normalize(payment.email || payment.Email);\n  if (!email) continue;\n  \n  const dateStr = payment.date_created || payment[\"date_created\"] || payment[\"Date\"];\n  if (!dateStr) continue;\n\n  const dateObj = new Date(dateStr);\n  if (isNaN(dateObj.getTime())) continue;\n  \n  if (!lastPaymentMap[email] || dateObj > lastPaymentMap[email]) {\n    lastPaymentMap[email] = dateObj;\n  }\n}\n\n// 2. Iterate Master Roles and Decide Status\nconst results = [];\nconst now = new Date();\nconst SIXTY_DAYS_MS = 60 * 24 * 60 * 60 * 1000;\n\nfor (const user of allRoles) {\n  if (!user) continue;\n  \n  const email = normalize(user.email || user.Email);\n  const masterRole = user[\"User Role\"] || user[\"role\"] || user[\"Role\"] || user[\"user_role\"];\n  \n  if (!email) continue;\n  \n  let targetRole = 'sinpago';\n  let reason = 'NO_PAYMENT_FOUND';\n  let daysSince = -1;\n  let paymentDate = 'None';\n  \n  if (lastPaymentMap[email]) {\n    const lastDate = lastPaymentMap[email];\n    const diff = now - lastDate;\n    daysSince = Math.floor(diff / (24 * 60 * 60 * 1000));\n    paymentDate = lastDate.toISOString();\n    \n    if (diff <= SIXTY_DAYS_MS) {\n      if (masterRole) {\n         targetRole = masterRole;\n         reason = `ACTIVE_PAYMENT`;\n      } else {\n         reason = `ACTIVE_PAYMENT_MISSING_ROLE_DEFINITION`;\n         targetRole = 'sinpago';\n      }\n    } else {\n      reason = `EXPIRED_PAYMENT`;\n    }\n  }\n  \n  results.push({\n    json: {\n      email: email,\n      targetRole: targetRole,\n      reason: reason,\n      daysSincePayment: daysSince,\n      paymentDate: paymentDate,\n      debug: debugStats\n    }\n  });\n}\n\nif (results.length === 0) {\n    results.push({ \n        json: { \n            error: \"No results generated.\", \n            debug: debugStats, \n            firstRoleEntry: allRoles[0] || \"Empty\" \n        } \n    });\n}\n\nreturn results;"
+            },
+            "name": "Calculate Logic",
+            "type": "n8n-nodes-base.function",
+            "typeVersion": 1,
+            "position": [
+                200,
+                0
+            ],
+            "id": "calculate-logic"
+        },
+        {
+            "parameters": {
+                "batchSize": 1,
+                "options": {}
+            },
+            "type": "n8n-nodes-base.splitInBatches",
+            "typeVersion": 1,
+            "position": [
+                400,
+                0
+            ],
+            "id": "split-batches",
+            "name": "Loop Results"
+        },
+        {
+            "parameters": {
+                "resource": "user",
+                "operation": "getAll",
+                "limit": 1,
+                "options": {
+                    "search": "={{ $json.email }}"
+                }
+            },
+            "name": "Find WP User",
+            "type": "n8n-nodes-base.wordpress",
+            "typeVersion": 1,
+            "position": [
+                600,
+                0
+            ],
+            "id": "find-wp-user",
+            "credentials": {
+                "wordpressApi": {
+                    "id": "YOUR_WP_CREDENTIAL_ID",
+                    "name": "WordPress Account"
+                }
+            },
+            "continueOnFail": true
+        },
+        {
+            "parameters": {
+                "functionCode": "// Merge WP Data with Target Role safely\nconst wpUser = $input.item.json;\nconst loopData = $(\"Loop Results\").item.json;\n\nreturn {\n  json: {\n    wpId: wpUser.id,\n    wpRoles: wpUser.roles || [],\n    targetRole: loopData.targetRole,\n    email: loopData.email,\n    reason: loopData.reason\n  }\n};"
+            },
+            "name": "Merge Data",
+            "type": "n8n-nodes-base.function",
+            "typeVersion": 1,
+            "position": [
+                700,
+                0
+            ],
+            "id": "merge-data"
+        },
+        {
+            "parameters": {
+                "method": "POST",
+                "url": "={{ \"https://panel.fernandosanchezinstituto.com.mx/wp-json/wp/v2/users/\" + $json.wpId }}",
+                "authentication": "predefinedCredentialType",
+                "nodeCredentialType": "wordpressApi",
+                "sendBody": true,
+                "contentType": "json",
+                "bodyParameters": {
+                    "parameters": [
+                        {
+                            "name": "roles",
+                            "value": "={{ [ $json.targetRole ] }}"
+                        }
+                    ]
+                }
+            },
+            "name": "Update User Role",
+            "type": "n8n-nodes-base.httpRequest",
+            "typeVersion": 3,
+            "position": [
+                1000,
+                0
+            ],
+            "id": "update-role",
+            "credentials": {
+                "wordpressApi": {
+                    "id": "YOUR_WP_CREDENTIAL_ID",
+                    "name": "WordPress Account"
+                }
+            }
+        }
+    ],
+    "connections": {
+        "Daily Schedule": {
+            "main": [
+                [
+                    {
+                        "node": "Read Payments",
+                        "type": "main",
+                        "index": 0
+                    },
+                    {
+                        "node": "Read Master Roles",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Read Payments": {
+            "main": [
+                [
+                    {
+                        "node": "Merge Inputs",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Read Master Roles": {
+            "main": [
+                [
+                    {
+                        "node": "Merge Inputs",
+                        "type": "main",
+                        "index": 1
+                    }
+                ]
+            ]
+        },
+        "Merge Inputs": {
+            "main": [
+                [
+                    {
+                        "node": "Calculate Logic",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Calculate Logic": {
+            "main": [
+                [
+                    {
+                        "node": "Loop Results",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Loop Results": {
+            "main": [
+                [
+                    {
+                        "node": "Find WP User",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Find WP User": {
+            "main": [
+                [
+                    {
+                        "node": "Merge Data",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Merge Data": {
+            "main": [
+                [
+                    {
+                        "node": "Update User Role",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Update User Role": {
+            "main": [
+                [
+                    {
+                        "node": "Loop Results",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        }
+    }
+}

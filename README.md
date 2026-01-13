@@ -9,7 +9,7 @@
 ## SEO y Metadata
 
 ### Dashboard (Panel de Estudiantes)
-**Título del Sitio:** IDEBIO - Panel de Alumnos | Biodesprogramación e Ingeniería Biológica
+**Título del Sitio:** IDEBIO - Panel de Alumnos | Instituto de Biodesprogramación Fernando Sánchez
 **Descripción Corta:** Plataforma exclusiva para alumnos de IDEBIO. Accede a tus diplomados en Biodesprogramación, material de estudio y certificaciones con Fernando Sánchez.
 
 ## Colores Institucionales

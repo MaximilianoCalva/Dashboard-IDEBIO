@@ -1,0 +1,275 @@
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com"></script>
+
+<div class="space-y-8 pb-12">
+
+    <!-- 1. Student Info & Coordinator Header -->
+    <div
+        class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 flex flex-col md:flex-row gap-6 items-start md:items-center justify-between">
+
+        <!-- Student Greeting -->
+        <div class="flex items-center gap-4">
+            <div class="w-16 h-16 rounded-full bg-gray-200 overflow-hidden border-2 border-[#233878]">
+                <!-- Placeholder Avatar -->
+                <img src="https://ui-avatars.com/api/?name=Alumno+Idebio&background=233878&color=fff" alt="Avatar"
+                    class="w-full h-full object-cover">
+            </div>
+            <div>
+                <h1 class="text-2xl font-bold text-gray-800">Hola, <span class="text-[#233878]">Alumno</span> 👋</h1>
+                <p class="text-sm text-gray-500">Bienvenido a tu panel de estudio.</p>
+                <div class="mt-2 flex gap-2">
+                    <span
+                        class="px-2 py-0.5 rounded text-[10px] font-bold bg-blue-50 text-blue-700 border border-blue-100 uppercase">G12</span>
+                    <span
+                        class="px-2 py-0.5 rounded text-[10px] font-bold bg-green-50 text-green-700 border border-green-100 uppercase">Activo</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Coordinator Card -->
+        <div
+            class="bg-[#f8fafc] rounded-xl p-4 border border-blue-50 flex items-center gap-4 max-w-md w-full md:w-auto">
+            <div class="shrink-0 w-12 h-12 rounded-full overflow-hidden bg-gray-300">
+                <img src="https://ui-avatars.com/api/?name=Diego+Cisneros&background=random" alt="Coordinator"
+                    class="w-full h-full object-cover">
+            </div>
+            <div class="flex-1">
+                <p class="text-xs text-gray-400 font-bold uppercase mb-0.5">Tu Coordinador</p>
+                <p class="text-sm font-bold text-gray-800 leading-tight">Diego Cisneros</p>
+                <a href="https://wa.me/5213334054655" target="_blank"
+                    class="inline-flex items-center mt-1 text-xs font-semibold text-green-600 hover:text-green-700">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 mr-1" fill="currentColor"
+                        viewBox="0 0 24 24">
+                        <path
+                            d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.463 1.065 2.876 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z" />
+                    </svg>
+                    33 3405 4655
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. Academic Status Grid -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <!-- Card 1: Payments -->
+        <div
+            class="bg-white p-4 rounded-xl shadow-sm border border-gray-100 hover:border-blue-200 transition-colors group cursor-pointer">
+            <div
+                class="w-10 h-10 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+                </svg>
+            </div>
+            <h3 class="font-bold text-gray-800 text-sm">Historial de Pagos</h3>
+            <p class="text-xs text-green-500 font-semibold">Al día</p>
+        </div>
+
+        <!-- Card 2: Grades -->
+        <div
+            class="bg-white p-4 rounded-xl shadow-sm border border-gray-100 hover:border-blue-200 transition-colors group cursor-pointer">
+            <div
+                class="w-10 h-10 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+            </div>
+            <h3 class="font-bold text-gray-800 text-sm">Calif. Totales</h3>
+            <p class="text-xs text-gray-500">Promedio: 9.8</p>
+        </div>
+
+        <!-- Card 3: Feedback -->
+        <div
+            class="bg-white p-4 rounded-xl shadow-sm border border-gray-100 hover:border-blue-200 transition-colors group cursor-pointer">
+            <div
+                class="w-10 h-10 rounded-lg bg-purple-50 text-purple-600 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z" />
+                </svg>
+            </div>
+            <h3 class="font-bold text-gray-800 text-sm">Retroalimentación</h3>
+            <p class="text-xs text-gray-500">2 Nuevos comentarios</p>
+        </div>
+
+        <!-- Card 4: Therapies -->
+        <div
+            class="bg-white p-4 rounded-xl shadow-sm border border-gray-100 hover:border-blue-200 transition-colors group cursor-pointer">
+            <div
+                class="w-10 h-10 rounded-lg bg-orange-50 text-orange-600 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                </svg>
+            </div>
+            <h3 class="font-bold text-gray-800 text-sm">Registro Terapias</h3>
+            <p class="text-xs text-gray-500">Ver bitácora</p>
+        </div>
+    </div>
+
+    <!-- 3. Upcoming Activity Calendar (Visual Only) -->
+    <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
+        <div class="flex items-center justify-between mb-6">
+            <h2 class="text-lg font-bold text-gray-800">Calendario de Actividades</h2>
+            <button class="text-xs font-bold text-[#233878] hover:underline">Ver mes completo</button>
+        </div>
+        <div class="flex gap-4 overflow-x-auto pb-2">
+            <!-- Day Item: Active -->
+            <div class="flex flex-col items-center min-w-[60px] p-3 rounded-xl bg-[#233878] text-white shadow-md">
+                <span class="text-xs opacity-80">JUE</span>
+                <span class="text-xl font-bold">15</span>
+                <div class="w-1.5 h-1.5 rounded-full bg-yellow-400 mt-2"></div>
+            </div>
+            <!-- Day Item -->
+            <div class="flex flex-col items-center min-w-[60px] p-3 rounded-xl border border-gray-100 text-gray-400">
+                <span class="text-xs">VIE</span>
+                <span class="text-xl font-bold">16</span>
+            </div>
+            <!-- Day Item -->
+            <div class="flex flex-col items-center min-w-[60px] p-3 rounded-xl border border-gray-100 text-gray-400">
+                <span class="text-xs">SÁB</span>
+                <span class="text-xl font-bold">17</span>
+            </div>
+            <!-- Day Item -->
+            <div
+                class="flex flex-col items-center min-w-[60px] p-3 rounded-xl border border-gray-100 text-gray-600 bg-gray-50">
+                <span class="text-xs">DOM</span>
+                <span class="text-xl font-bold">18</span>
+                <div class="w-1.5 h-1.5 rounded-full bg-gray-300 mt-2"></div>
+            </div>
+            <!-- Day Item -->
+            <div class="flex flex-col items-center min-w-[60px] p-3 rounded-xl border border-gray-100 text-gray-400">
+                <span class="text-xs">LUN</span>
+                <span class="text-xl font-bold">19</span>
+            </div>
+        </div>
+        <div class="mt-4 p-3 bg-blue-50 rounded-lg flex items-center gap-3">
+            <div class="w-10 h-10 rounded bg-white flex items-center justify-center text-[#233878] font-bold shadow-sm">
+                19:00
+            </div>
+            <div>
+                <p class="text-sm font-bold text-[#233878]">Resolución de Dudas Módulo 1</p>
+                <p class="text-xs text-blue-600">Zoom - Clase en Vivo</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 4. Subjects List (24 Modules) -->
+    <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+        <div class="px-6 py-4 border-b border-gray-100 bg-gray-50/50">
+            <h2 class="text-lg font-bold text-gray-800">Plan de Estudios (24 Materias)</h2>
+        </div>
+        <div class="divide-y divide-gray-100 max-h-[500px] overflow-y-auto">
+
+            <!-- Generate Items (Sample - Repeating logic would be used here in a real template engine, manual for snippet) -->
+            <!-- 1 -->
+            <div
+                class="p-4 hover:bg-blue-50 transition-colors flex items-center gap-4 cursor-pointer border-l-4 border-[#233878] bg-blue-50/30">
+                <span class="text-lg font-bold text-gray-300 w-6">01</span>
+                <span class="text-sm font-bold text-gray-800 flex-1">Introducción a la Biodesprogramación</span>
+                <span
+                    class="px-2 py-1 bg-green-100 text-green-700 text-[10px] font-bold rounded uppercase">Completado</span>
+            </div>
+            <!-- 2 -->
+            <div
+                class="p-4 hover:bg-blue-50 transition-colors flex items-center gap-4 cursor-pointer border-l-4 border-yellow-400 bg-yellow-50/20">
+                <span class="text-lg font-bold text-gray-300 w-6">02</span>
+                <span class="text-sm font-bold text-gray-800 flex-1">Introducción a la Nueva Medicina Germánica</span>
+                <span class="px-2 py-1 bg-yellow-100 text-yellow-700 text-[10px] font-bold rounded uppercase">En
+                    Curso</span>
+            </div>
+            <!-- 3 -->
+            <div class="p-4 hover:bg-blue-50 transition-colors flex items-center gap-4 cursor-pointer opacity-60">
+                <span class="text-lg font-bold text-gray-300 w-6">03</span>
+                <span class="text-sm font-medium text-gray-600 flex-1">Nueva medicina germánica 2</span>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-400" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                </svg>
+            </div>
+            <!-- 4 -->
+            <div class="p-4 hover:bg-blue-50 transition-colors flex items-center gap-4 cursor-pointer opacity-60">
+                <span class="text-lg font-bold text-gray-300 w-6">04</span>
+                <span class="text-sm font-medium text-gray-600 flex-1">Biopsicología</span>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-400" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                </svg>
+            </div>
+
+            <!-- 5 -->
+            <div class="p-4 hover:bg-blue-50 transition-colors flex items-center gap-4 cursor-pointer opacity-60">
+                <span class="text-lg font-bold text-gray-300 w-6">05</span>
+                <span class="text-sm font-medium text-gray-600 flex-1">Anatomía, órganos y emociones 1</span>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-400" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                </svg>
+            </div>
+            <!-- ... (Continuing items up to 24 would make this file very long, adding a 'Load More' button visual for brevity or listing a few significant ones) -->
+            <!-- Adding a visual indicator that there are more -->
+            <div class="p-4 text-center text-sm text-gray-500 bg-gray-50">
+                Ver materias restantes (6-24) 👇
+            </div>
+
+        </div>
+    </div>
+
+    <!-- 5. Directories (Institutional & Teachers) -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <a href="#"
+            class="bg-gradient-to-r from-gray-800 to-gray-700 rounded-xl p-6 text-white shadow-lg hover:shadow-xl transition-shadow flex items-center justify-between group">
+            <div>
+                <h3 class="font-bold text-lg">Directorio Institucional</h3>
+                <p class="text-xs text-gray-300">Contactos administrativos y soporte.</p>
+            </div>
+            <div class="bg-white/10 p-2 rounded-lg group-hover:bg-white/20 transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                </svg>
+            </div>
+        </a>
+
+        <a href="#"
+            class="bg-gradient-to-r from-[#2863A4] to-blue-500 rounded-xl p-6 text-white shadow-lg hover:shadow-xl transition-shadow flex items-center justify-between group">
+            <div>
+                <h3 class="font-bold text-lg">Correos Docentes</h3>
+                <p class="text-xs text-blue-100">Lista de contacto académico.</p>
+            </div>
+            <div class="bg-white/10 p-2 rounded-lg group-hover:bg-white/20 transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+            </div>
+        </a>
+    </div>
+
+    <!-- 6. Recordings Section -->
+    <div class="bg-gray-900 rounded-2xl shadow-lg border border-gray-800 p-6 text-white relative overflow-hidden">
+        <div class="relative z-10 flex items-center justify-between">
+            <div>
+                <h2 class="text-xl font-bold text-white mb-1">Sesiones Grabadas</h2>
+                <p class="text-sm text-gray-400">Accede al archivo histórico de todas las sesiones.</p>
+            </div>
+            <button
+                class="bg-[#2863A4] hover:bg-blue-500 text-white px-4 py-2 rounded-lg font-bold text-sm transition-colors">
+                Ir a Videoteca
+            </button>
+        </div>
+        <!-- Background decoration -->
+        <div class="absolute right-0 top-0 h-full w-1/3 bg-gradient-to-l from-blue-900/50 to-transparent"></div>
+    </div>
+
+</div>
