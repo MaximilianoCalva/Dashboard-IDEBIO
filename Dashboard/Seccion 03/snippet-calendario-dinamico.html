@@ -1,0 +1,186 @@
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com"></script>
+
+<div
+    class="bg-white rounded-2xl shadow-lg border border-gray-100 p-5 md:p-6 relative overflow-hidden group hover:border-blue-200 transition-all duration-300">
+    <!-- Decorative background element -->
+    <div
+        class="absolute top-0 right-0 -mr-16 -mt-16 w-48 h-48 rounded-full bg-blue-50 opacity-50 blur-3xl group-hover:bg-blue-100 transition-colors">
+    </div>
+
+    <div class="relative z-10 flex flex-col">
+        <!-- Header with Icon -->
+        <div class="flex items-start justify-between mb-4">
+            <div>
+                <span
+                    class="inline-block px-2.5 py-0.5 bg-blue-100 text-[#233878] text-[10px] md:text-xs font-bold rounded-full uppercase tracking-wide mb-1.5">
+                    Calendario Académico
+                </span>
+                <h2 class="text-lg md:text-2xl font-bold text-gray-800 leading-tight">
+                    Diplomado en <br>
+                    <span class="text-[#233878]">Biodesprogramación</span>
+                </h2>
+            </div>
+            <div
+                class="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-blue-50 text-[#233878] flex items-center justify-center shadow-sm shrink-0">
+                <!-- Calendar Icon -->
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 md:h-6 md:w-6" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+            </div>
+        </div>
+
+        <!-- Info Text -->
+        <div class="mb-5 text-xs md:text-sm text-gray-600">
+            <p class="leading-relaxed">
+                Aquí puedes encontrar toda la información relevante sobre la materia que estás cursando: <span
+                    class="text-[#233878] font-bold">cuándo comienza y cuándo termina</span>.
+            </p>
+        </div>
+
+        <!-- Dynamic Calendar Container -->
+        <div class="bg-gray-50 rounded-xl p-4 border border-gray-200" id="calendar-widget">
+            <!-- Calendar Header -->
+            <div class="flex items-center justify-between mb-4">
+                <h3 class="font-bold text-gray-800 text-lg capitalize" id="current-month-year">Cargando...</h3>
+                <div class="flex gap-1">
+                    <span class="w-2 h-2 rounded-full bg-[#10B981]" title="Inicio envío trabajo final (10)"></span>
+                    <span class="w-2 h-2 rounded-full bg-[#8B5CF6]" title="Apertura siguiente materia (15)"></span>
+                    <span class="w-2 h-2 rounded-full bg-[#EF4444]" title="Cierre envío trabajo final (20)"></span>
+                    <span class="w-2 h-2 rounded-full bg-[#F59E0B]" title="Evaluación docentes (21-26)"></span>
+                </div>
+            </div>
+
+            <!-- Days of Week -->
+            <div class="grid grid-cols-7 mb-2 text-center">
+                <span class="text-[10px] font-bold text-gray-400 uppercase">Dom</span>
+                <span class="text-[10px] font-bold text-gray-400 uppercase">Lun</span>
+                <span class="text-[10px] font-bold text-gray-400 uppercase">Mar</span>
+                <span class="text-[10px] font-bold text-gray-400 uppercase">Mié</span>
+                <span class="text-[10px] font-bold text-gray-400 uppercase">Jue</span>
+                <span class="text-[10px] font-bold text-gray-400 uppercase">Vie</span>
+                <span class="text-[10px] font-bold text-gray-400 uppercase">Sáb</span>
+            </div>
+
+            <!-- Calendar Days Grid -->
+            <div class="grid grid-cols-7 gap-1 text-center" id="calendar-days">
+                <!-- Days will be injected via JS -->
+            </div>
+        </div>
+
+        <!-- Legend -->
+        <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-2 text-[10px] md:text-xs">
+            <div class="flex items-center gap-2">
+                <div class="w-2.5 h-2.5 rounded-full bg-[#10B981] shrink-0"></div>
+                <span class="text-gray-600">Día 10: Inicio envío trabajo</span>
+            </div>
+            <div class="flex items-center gap-2">
+                <div class="w-2.5 h-2.5 rounded-full bg-[#8B5CF6] shrink-0"></div>
+                <span class="text-gray-600">Día 15: Apertura nueva materia</span>
+            </div>
+            <div class="flex items-center gap-2">
+                <div class="w-2.5 h-2.5 rounded-full bg-[#EF4444] shrink-0"></div>
+                <span class="text-gray-600">Día 20: Cierre envío trabajo</span>
+            </div>
+            <div class="flex items-center gap-2">
+                <div class="w-2.5 h-2.5 rounded-full bg-[#F59E0B] shrink-0"></div>
+                <span class="text-gray-600">Días 21-26: Evaluación docentes</span>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    (function () {
+        // Configuration
+        const EVENTS = {
+            10: { color: 'bg-[#10B981]', text: 'text-white', label: 'Inicio envío trabajo' },
+            15: { color: 'bg-[#8B5CF6]', text: 'text-white', label: 'Nueva materia' },
+            20: { color: 'bg-[#EF4444]', text: 'text-white', label: 'Cierre envío trabajo' }
+        };
+
+        const RANGE_EVENTS = {
+            start: 21,
+            end: 26,
+            color: 'bg-[#F59E0B]',
+            lightColor: 'bg-amber-100',
+            text: 'text-white',
+            lightText: 'text-amber-800'
+        };
+
+        const monthNames = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
+            "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
+        ];
+
+        const date = new Date();
+        const currentMonth = date.getMonth();
+        const currentYear = date.getFullYear();
+        const today = date.getDate();
+
+        // DOM Elements
+        const monthYearEl = document.getElementById('current-month-year');
+        const calendardaysEl = document.getElementById('calendar-days');
+
+        // Set Month Header
+        monthYearEl.textContent = `${monthNames[currentMonth]} ${currentYear}`;
+
+        // Get first day of month and total days
+        const firstDay = new Date(currentYear, currentMonth, 1).getDay();
+        const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+
+        // Clear grid
+        calendardaysEl.innerHTML = '';
+
+        // Add empty cells for days before the first day of the month
+        for (let i = 0; i < firstDay; i++) {
+            const emptyCell = document.createElement('div');
+            emptyCell.className = 'h-8 w-8';
+            calendardaysEl.appendChild(emptyCell);
+        }
+
+        // Generate days
+        for (let day = 1; day <= daysInMonth; day++) {
+            const dayCell = document.createElement('div');
+            let classes = ['h-8', 'w-8', 'flex', 'items-center', 'justify-center', 'rounded-full', 'text-xs', 'font-medium', 'cursor-default', 'transition-all', 'mx-auto'];
+
+            // Styles based on logic
+            let isEvent = false;
+            let tooltipText = '';
+
+            // Check for single day events
+            if (EVENTS[day]) {
+                classes.push(EVENTS[day].color, EVENTS[day].text, 'shadow-sm', 'font-bold');
+                isEvent = true;
+                tooltipText = EVENTS[day].label;
+            }
+            // Check for range events (Evaluación docentes)
+            else if (day >= RANGE_EVENTS.start && day <= RANGE_EVENTS.end) {
+                // If it's one of the edges or middle
+                classes.push(RANGE_EVENTS.lightColor, RANGE_EVENTS.lightText);
+                isEvent = true;
+                tooltipText = 'Evaluación docentes';
+
+                // Make the dot a bit more prominent if it's the exact day we are on or just stylistically
+                if (day === today) classes.push('ring-2', 'ring-offset-1', 'ring-amber-400');
+            }
+            // Standard day styling
+            else {
+                classes.push('text-gray-600', 'hover:bg-gray-100');
+            }
+
+            // Highlight Today if not already highlighted strongly
+            if (day === today && !EVENTS[day]) {
+                classes.push('border', 'border-[#233878]', 'text-[#233878]', 'font-bold');
+            }
+
+            dayCell.className = classes.join(' ');
+            dayCell.textContent = day;
+            if (isEvent) dayCell.title = tooltipText;
+
+            calendardaysEl.appendChild(dayCell);
+        }
+    })();
+</script>

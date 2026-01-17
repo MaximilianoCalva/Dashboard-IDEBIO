@@ -1,0 +1,31 @@
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com"></script>
+
+<div
+    class="inline-flex items-center gap-1.5 px-3 py-1 bg-white/90 backdrop-blur-sm border border-gray-200 rounded-full shadow-sm">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 text-gray-500" fill="none" viewBox="0 0 24 24"
+        stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+    </svg>
+    <span class="text-[10px] font-medium text-gray-500 uppercase tracking-wide">Vence:</span>
+    <span class="text-[10px] font-bold text-[#233878]" id="vigencia-date-badge">...</span>
+</div>
+
+<script>
+    (function () {
+        // Calculate date +3 months
+        const today = new Date();
+        const futureDate = new Date(today.setMonth(today.getMonth() + 3));
+
+        // Compact format: "16 ABR 2026"
+        const day = futureDate.getDate();
+        const year = futureDate.getFullYear();
+        const monthShort = futureDate.toLocaleString('es-ES', { month: 'short' }).toUpperCase().replace('.', '');
+
+        const formattedDate = `${day} ${monthShort} ${year}`;
+
+        const el = document.getElementById('vigencia-date-badge');
+        if (el) el.textContent = formattedDate;
+    })();
+</script>

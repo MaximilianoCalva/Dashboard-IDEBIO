@@ -1,0 +1,80 @@
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com"></script>
+
+<div
+    class="bg-white rounded-2xl shadow-lg border border-gray-100 p-5 md:p-6 relative overflow-hidden group hover:border-blue-200 transition-all duration-300">
+    <!-- Decorative background element -->
+    <div
+        class="absolute top-0 right-0 -mr-16 -mt-16 w-48 h-48 rounded-full bg-blue-50 opacity-50 blur-3xl group-hover:bg-blue-100 transition-colors">
+    </div>
+
+    <div class="relative z-10 flex flex-col">
+        <!-- Header with Icon -->
+        <div class="flex items-start justify-between mb-3 md:mb-4">
+            <div>
+                <span
+                    class="inline-block px-2.5 py-0.5 bg-blue-100 text-[#233878] text-[10px] md:text-xs font-bold rounded-full uppercase tracking-wide mb-1.5">
+                    Criterios
+                </span>
+                <h2 class="text-lg md:text-2xl font-bold text-gray-800 leading-tight">
+                    Rúbrica de <br>
+                    <span class="text-[#233878]">Evaluación</span>
+                </h2>
+            </div>
+            <div
+                class="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-blue-50 text-[#233878] flex items-center justify-center shadow-sm shrink-0">
+                <!-- Rubric Icon -->
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 md:h-6 md:w-6" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+            </div>
+        </div>
+
+        <!-- Rubric Items -->
+        <div class="flex flex-col gap-3 mb-1">
+
+            <!-- Item 1 -->
+            <div class="flex items-center justify-between p-3 rounded-lg bg-gray-50 border border-gray-100">
+                <div class="flex items-center gap-3">
+                    <div
+                        class="w-8 h-8 rounded-full bg-blue-100 text-[#233878] flex items-center justify-center font-bold text-xs shrink-0">
+                        1
+                    </div>
+                    <span class="text-xs md:text-sm font-medium text-gray-700">Realización de exámenes</span>
+                </div>
+                <span class="text-sm md:text-base font-bold text-[#233878]">60%</span>
+            </div>
+
+            <!-- Item 2 -->
+            <div class="flex items-center justify-between p-3 rounded-lg bg-gray-50 border border-gray-100">
+                <div class="flex items-center gap-3">
+                    <div
+                        class="w-8 h-8 rounded-full bg-purple-100 text-purple-700 flex items-center justify-center font-bold text-xs shrink-0">
+                        2
+                    </div>
+                    <span class="text-xs md:text-sm font-medium text-gray-700">Entrega de trabajo final</span>
+                </div>
+                <span class="text-sm md:text-base font-bold text-purple-700">20%</span>
+            </div>
+
+            <!-- Item 3 -->
+            <div class="flex items-center justify-between p-3 rounded-lg bg-gray-50 border border-gray-100">
+                <div class="flex items-center gap-3">
+                    <div
+                        class="w-8 h-8 rounded-full bg-green-100 text-green-700 flex items-center justify-center font-bold text-xs shrink-0">
+                        3
+                    </div>
+                    <span class="text-xs md:text-sm font-medium text-gray-700">Participación en Foro</span>
+                </div>
+                <span class="text-sm md:text-base font-bold text-green-700">20%</span>
+            </div>
+
+        </div>
+
+        <!-- Divider (Optional, if we had another section) -->
+        <!-- <div class="h-px w-full bg-gray-100 mb-4 mt-4"></div> -->
+
+    </div>
+</div>
